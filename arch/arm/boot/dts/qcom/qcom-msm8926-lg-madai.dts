@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024, Masanori Ogino <mogino@acm.org>
+ */
+
+/dts-v1/;
+
+#include "qcom-msm8226.dtsi"
+#include "pm8226.dtsi"
+
+/ {
+	model = "LG Fx0";
+	compatible = "lg,madai", "qcom,msm8926", "qcom,msm8226";
+	chassis-type = "handset";
+
+	aliases {
+		serial0 = &blsp1_uart3;
+	};
+
+	chosen {
+		stdout-path = "serial0";
+	};
+};
+
+&blsp1_uart3 {
+	status = "okay";
+};
+
+&usb {
+	status = "okay";
+};
+
+&usb_hs_phy {
+	qcom,init-seq = /bits/ 8 <0x44 0x80 0x68 0x81 0x24 0x82 0x13 0x83>;
+};
